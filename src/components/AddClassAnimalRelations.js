@@ -13,7 +13,17 @@ export default function AddClassAnimalRelations(props) {
 		RelationTypes.MANY_TO_ONE,
 		"classId",
 		"classId"
-	);
+	).sort(function (a, b) {
+		var nameA = a.name.toUpperCase();
+		var nameB = b.name.toUpperCase();
+		if (nameA < nameB) {
+			return -1;
+		}
+		if (nameA > nameB) {
+			return 1;
+		}
+		return 0;
+	});
 	// animal.classId === class.classId
 	const classes = getWithRelations(
 		"classes",
@@ -22,7 +32,17 @@ export default function AddClassAnimalRelations(props) {
 		RelationTypes.ONE_TO_MANY,
 		"classId",
 		"classId"
-	);
+	).sort(function (a, b) {
+		var nameA = a.name.toUpperCase();
+		var nameB = b.name.toUpperCase();
+		if (nameA < nameB) {
+			return -1;
+		}
+		if (nameA > nameB) {
+			return 1;
+		}
+		return 0;
+	});
 
 	const addClassAnimalRelation = (animalId, classId) => {
 		const animal = get("animals", (q) => q.animalId === animalId)[0];
